@@ -1,0 +1,88 @@
+Metadata-Version: 2.4
+Name: jobpilot
+Version: 0.1.0
+Summary: Local-first job application automation for macOS Apple Silicon.
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi>=0.115
+Requires-Dist: uvicorn[standard]>=0.30
+Requires-Dist: SQLAlchemy>=2.0
+Requires-Dist: pydantic>=2
+Requires-Dist: python-dotenv>=1.0
+Requires-Dist: python-multipart>=0.0.9
+Requires-Dist: email-validator>=2.2
+Requires-Dist: ollama>=0.4
+Requires-Dist: chromadb>=0.5
+Requires-Dist: APScheduler<4,>=3.10
+Requires-Dist: playwright>=1.48
+Requires-Dist: playwright-stealth>=1.0
+Requires-Dist: httpx>=0.27
+Requires-Dist: beautifulsoup4>=4.12
+Requires-Dist: feedparser>=6.0
+Requires-Dist: linkedin-jobs-scraper>=4.1
+Requires-Dist: python-jobspy>=1.1
+Requires-Dist: pypdf>=5.0
+Requires-Dist: alembic>=1.13
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.24; extra == "dev"
+Requires-Dist: ruff>=0.8; extra == "dev"
+
+# JobPilot
+
+JobPilot is a local-first job application automation scaffold for Apple Silicon Macs. It combines a FastAPI backend, SQLite application state, ChromaDB vector memory, local Ollama models, a Next.js 14 dashboard, APScheduler jobs, and Playwright-based scraping and browser automation.
+
+## Stack
+
+- Backend: Python 3.12, FastAPI, SQLAlchemy 2.0
+- Database: SQLite at `data/jobpilot.db`, ChromaDB at `data/chroma/`
+- LLM: Ollama at `http://localhost:11434`
+- Models: `llama3.2` for quick tasks, `llama3.1:8b` for cover letters and outreach
+- Frontend: Next.js 14 App Router, Tailwind CSS, shadcn-style UI components
+- Scheduler: APScheduler 3.x
+- Scraping: Playwright, stealth plugin, httpx, BeautifulSoup, feedparser
+
+## Setup
+
+```bash
+cd jobpilot
+cp .env.example .env
+make install
+make ollama-pull
+make db
+```
+
+## Development
+
+```bash
+make dev
+```
+
+The backend runs on `http://localhost:8000` and the frontend runs on `http://localhost:3000`.
+
+Useful commands:
+
+```bash
+make dev-backend
+make dev-frontend
+make scrape
+```
+
+## API
+
+- `GET /health`
+- `GET /api/profile`
+- `PUT /api/profile`
+- `GET /api/jobs`
+- `PATCH /api/jobs/{job_id}/status`
+- `POST /api/resumes`
+- `GET /api/applications`
+- `POST /api/applications`
+- `POST /api/qa/answer`
+- `POST /api/qa/teach`
+- `GET /api/scheduler/status`
+- `POST /api/scheduler/scrape`
+
+## Data
+
+`data/`, `.env`, and uploaded resume files are ignored by git. The project keeps `.gitkeep` files so the expected local folders exist after cloning.

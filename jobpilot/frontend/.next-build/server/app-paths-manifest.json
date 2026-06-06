@@ -1,0 +1,12 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/jobs/page": "app/jobs/page.js",
+  "/outreach/page": "app/outreach/page.js",
+  "/page": "app/page.js",
+  "/resumes/page": "app/resumes/page.js",
+  "/settings/page": "app/settings/page.js",
+  "/qa/page": "app/qa/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/jobs/[id]/page": "app/jobs/[id]/page.js",
+  "/applications/page": "app/applications/page.js"
+}
